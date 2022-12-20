@@ -28,6 +28,6 @@ class CardActor(val value: Card, private val game: Durak) : Actor(){
 
     override fun draw(batch: Batch?, parentAlpha: Float) {
         super.draw(batch, parentAlpha)
-        batch!!.draw(face, x, y, originX, originY, widthImg.toFloat(), heightImg.toFloat(), scaleX, scaleY, 0f)
+        batch!!.draw(face, x, y, originX, originY, widthImg.toFloat(), heightImg.toFloat(), scaleX, scaleY, rotation)
     }
 }

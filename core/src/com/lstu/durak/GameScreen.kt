@@ -19,6 +19,11 @@ class GameScreen(val game: Durak): Screen{
     lateinit var p1: Player
     lateinit var p2: Player
     lateinit var deck: Deck
+    lateinit var handP1: Group
+    lateinit var handP2: Group
+    lateinit var trump: CardActor
+    lateinit var field: Group
+    lateinit var backCard: TextureActor
 
 
 
@@ -27,38 +32,28 @@ class GameScreen(val game: Durak): Screen{
         stage = Stage(FillViewport(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat()), batch)
         val bgGame = Texture("fonGame.png")
         val bg = TextureActor(bgGame)
+        backCard = TextureActor(Texture("back.jpg"))
+        backCard.width = 135f
+        backCard.height = 225f
+        backCard.setPosition(-backCard.width/1.5f, Gdx.graphics.height.toFloat()/2 - backCard.height/2)
         bg.width = Gdx.graphics.width.toFloat()
         bg.height = Gdx.graphics.height.toFloat()
         bg.setPosition(0f, 0f)
         p1 = Player(0)
         p2 = Player(1)
         deck = Deck()
-        widthCard = 225f
-        heightCard = 135f
+        widthCard = 275f
+        heightCard = 225f
+        stage!!.addActor(bg)
+
+        takeTrump(batch)
 
         //Раздача кард
         initCardPlayer(p1, p2, deck, batch)
+        printHand1()
+        printHand2()
 
-        p1.hand[0].width = widthCard
-        p1.hand[0].height = heightCard
-        p1.hand[0].setScale(0.6f)
-        p1.hand[0].setPosition( p1.hand[0].width*0.1f, heightCard/2)
-        for(i in 1 until p1.hand.size){
-            p1.hand[i].width = widthCard
-            p1.hand[i].height = heightCard
-            p1.hand[i].setScale(0.6f)
-            p1.hand[i].setPosition(p1.hand[i-1].x + p1.hand[i].width*0.3f , heightCard/2)
-        }
-
-        val handP1 = Group()
-        handP1.setSize(widthCard*p1.hand.size, heightCard)
-
-        for(i in p1.hand){
-            handP1.addActor(i)
-        }
-
-        stage!!.addActor(bg)
-        stage!!.addActor(handP1)
+        Gdx.app.log("size", "${deck.cards!!.size}")
     }
 
     override fun render(delta: Float) {
@@ -113,6 +108,62 @@ class GameScreen(val game: Durak): Screen{
             }
 
         }
+    }
+
+    private fun printHand1(){
+        p1.hand[0].width = widthCard
+        p1.hand[0].height = heightCard
+        p1.hand[0].setScale(0.5f)
+        p1.hand[0].setPosition( 0f, 0f)
+        for(i in 1 until p1.hand.size){
+            p1.hand[i].width = widthCard
+            p1.hand[i].height = heightCard
+            p1.hand[i].setScale(0.5f)
+            p1.hand[i].setPosition(p1.hand[i-1].x + p1.hand[i].width*0.2f , 0f)
+        }
+
+        handP1 = Group()
+        handP1.setSize(widthCard*p1.hand.size, heightCard)
+        handP1.setPosition(0f, 0f)
+
+        for(i in p1.hand){
+            handP1.addActor(i)
+        }
+        stage!!.addActor(handP1)
+    }
+
+    private fun printHand2(){
+        p2.hand[0].width = widthCard
+        p2.hand[0].height = heightCard
+        p2.hand[0].setScale(0.5f)
+        p2.hand[0].setPosition( 0f, 0f)
+        for(i in 1 until p2.hand.size){
+            p2.hand[i].width = widthCard
+            p2.hand[i].height = heightCard
+            p2.hand[i].setScale(0.5f)
+            p2.hand[i].setPosition(p2.hand[i-1].x + p2.hand[i].width*0.2f , 0f)
+        }
+
+        handP2 = Group()
+        handP2.setSize(widthCard*p2.hand.size, heightCard)
+        handP2.setPosition(0f, Gdx.graphics.height.toFloat() - p2.hand[0].height * 0.7f)
+
+        for(i in p2.hand){
+            handP2.addActor(i)
+        }
+        stage!!.addActor(handP2)
+    }
+
+    private fun takeTrump(batch: Batch){
+        trump = CardActor(deck.cards?.get(deck.cards!!.size-1)!!, game, batch)
+        deck.cards?.removeAt(deck.cards!!.size-1)
+        trump.width = widthCard
+        trump.height = heightCard
+        trump.setScale(0.5f)
+        trump.rotation = 90f
+        trump.setPosition(90f, Gdx.graphics.height.toFloat()/2 -  trump.height/3.5f)
+        stage!!.addActor(trump)
+        stage!!.addActor(backCard)
     }
 
 }
