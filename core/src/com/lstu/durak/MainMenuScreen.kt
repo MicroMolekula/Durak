@@ -22,6 +22,7 @@ class MainMenuScreen(val game: Durak): Screen {
         bg.width = Gdx.graphics.width.toFloat()
         bg.height = Gdx.graphics.height.toFloat()
         stage!!.addActor(bg)
+        // Проверка связи
     }
 
     override fun render(delta: Float) {
