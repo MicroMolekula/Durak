@@ -24,7 +24,7 @@ class Drop: Game() {
 
     override fun create() {
         batch = SpriteBatch()
-        stage = Stage(FillViewport(800f, 600f))
+        stage = Stage(FillViewport(Gdx.graphics.getWidth().toFloat(), Gdx.graphics.getHeight().toFloat()), batch)
         img = Texture("cardsImg.png")
         val card = Card(Suit.SPADES, CardsValue.SEVEN);
         textureRegion = TextureRegion(img, if (card.value.value != 14) 225*(card.value.value - 1) else 0, 315*(card.suit.value), 225, 315)
