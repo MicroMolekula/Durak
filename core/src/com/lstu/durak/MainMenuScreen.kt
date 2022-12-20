@@ -3,6 +3,7 @@ package com.lstu.durak
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.Screen
+import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
@@ -17,9 +18,12 @@ import com.badlogic.gdx.utils.viewport.Viewport
 
 class MainMenuScreen(val game: Durak): Screen {
     var stage: Stage? = null
+    lateinit var camera: OrthographicCamera
 
     constructor(game: Durak, batch: Batch): this(game){
         stage = Stage(FillViewport(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat()), batch)
+        camera = OrthographicCamera()
+        camera.setToOrtho(false, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
         val bgTexture = Texture("bgmenu.png")
         val btnTexture = Texture("btnPlay.png")
         val bg = TextureActor(bgTexture)
@@ -31,7 +35,7 @@ class MainMenuScreen(val game: Durak): Screen {
         btnPlay.setScale(0.3f)
         btnPlay.width = btnPlay.texture.width.toFloat()
         btnPlay.height = btnPlay.texture.height.toFloat()
-        btnPlay.setPosition(Gdx.graphics.width.toFloat()/2 - btnPlay.width*btnPlay.scaleX/2 , Gdx.graphics.height.toFloat()/2 - btnPlay.height*btnPlay.scaleY/2)
+        btnPlay.setPosition(Gdx.graphics.width.toFloat()/2 - btnPlay.width/2*btnPlay.scaleX , Gdx.graphics.height.toFloat()/2 - btnPlay.height*btnPlay.scaleY/2)
         btnPlay.addListener(BtnPlay(game))
 
 
@@ -80,7 +84,7 @@ class MainMenuScreen(val game: Durak): Screen {
     class Button(val texture: Texture):Actor(){
         override fun draw(batch: Batch?, parentAlpha: Float) {
             super.draw(batch, parentAlpha)
-            batch!!.draw(texture, x, y, originX, originY, width, height, scaleX, scaleY, 0f, 0, 0, width.toInt(), height.toInt(), false, false)
+            batch!!.draw(texture, x, y, originX, originY, width.toFloat()* Gdx.graphics.width/480f, height.toFloat()*Gdx.graphics.height/854f, scaleX, scaleY, 0f, 0, 0, width.toInt(), height.toInt(), false, false)
         }
     }
 }

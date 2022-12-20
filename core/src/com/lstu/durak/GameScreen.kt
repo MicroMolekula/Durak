@@ -33,8 +33,8 @@ class GameScreen(val game: Durak): Screen{
         val bgGame = Texture("fonGame.png")
         val bg = TextureActor(bgGame)
         backCard = TextureActor(Texture("back.jpg"))
-        backCard.width = 135f
-        backCard.height = 225f
+        backCard.width = 225f
+        backCard.height = 315f
         backCard.setPosition(-backCard.width/1.5f, Gdx.graphics.height.toFloat()/2 - backCard.height/2)
         bg.width = Gdx.graphics.width.toFloat()
         bg.height = Gdx.graphics.height.toFloat()
@@ -42,8 +42,8 @@ class GameScreen(val game: Durak): Screen{
         p1 = Player(0)
         p2 = Player(1)
         deck = Deck()
-        widthCard = 275f
-        heightCard = 225f
+        widthCard = 225f* Gdx.graphics.width/480f
+        heightCard = 315f*Gdx.graphics.height/854f
         stage!!.addActor(bg)
 
         takeTrump(batch)

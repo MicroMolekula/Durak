@@ -1,5 +1,6 @@
 package com.lstu.durak.actors
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
@@ -10,8 +11,8 @@ import com.lstu.durak.model.Card
 class CardActor(val value: Card, private val game: Durak) : Actor(){
     private var xImg = 0
     private var yImg = 0
-    private var widthImg = 225
-    private var heightImg = 315
+    private var widthImg = 362
+    private var heightImg = 473
 
     private lateinit var face: TextureRegion
 
@@ -28,6 +29,6 @@ class CardActor(val value: Card, private val game: Durak) : Actor(){
 
     override fun draw(batch: Batch?, parentAlpha: Float) {
         super.draw(batch, parentAlpha)
-        batch!!.draw(face, x, y, originX, originY, widthImg.toFloat(), heightImg.toFloat(), scaleX, scaleY, rotation)
+        batch!!.draw(face, x, y, originX, originY, width, height, scaleX, scaleY, rotation)
     }
 }
