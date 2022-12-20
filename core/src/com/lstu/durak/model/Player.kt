@@ -1,5 +1,8 @@
 package com.lstu.durak.model
 
-class Player(val id: Int, val hand: ArrayList<Card>) {
+import com.lstu.durak.actors.CardActor
+
+class Player(val id: Int) {
+    val hand: ArrayList<CardActor> = ArrayList()
 
 }
