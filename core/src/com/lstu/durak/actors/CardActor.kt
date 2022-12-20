@@ -11,8 +11,8 @@ import com.lstu.durak.model.Card
 class CardActor(val value: Card, private val game: Durak) : Actor(){
     private var xImg = 0
     private var yImg = 0
-    private var widthImg = 362
-    private var heightImg = 473
+    private var widthImg = 225
+    private var heightImg = 315
 
     private lateinit var face: TextureRegion
 

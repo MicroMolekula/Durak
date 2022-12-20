@@ -18,12 +18,9 @@ import com.badlogic.gdx.utils.viewport.Viewport
 
 class MainMenuScreen(val game: Durak): Screen {
     var stage: Stage? = null
-    lateinit var camera: OrthographicCamera
 
     constructor(game: Durak, batch: Batch): this(game){
         stage = Stage(FillViewport(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat()), batch)
-        camera = OrthographicCamera()
-        camera.setToOrtho(false, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
         val bgTexture = Texture("bgmenu.png")
         val btnTexture = Texture("btnPlay.png")
         val bg = TextureActor(bgTexture)
@@ -35,7 +32,7 @@ class MainMenuScreen(val game: Durak): Screen {
         btnPlay.setScale(0.3f)
         btnPlay.width = btnPlay.texture.width.toFloat()
         btnPlay.height = btnPlay.texture.height.toFloat()
-        btnPlay.setPosition(Gdx.graphics.width.toFloat()/2 - btnPlay.width/2*btnPlay.scaleX , Gdx.graphics.height.toFloat()/2 - btnPlay.height*btnPlay.scaleY/2)
+        btnPlay.setPosition(Gdx.graphics.width.toFloat()/2 - btnPlay.width/3f , Gdx.graphics.height.toFloat()/2 + btnPlay.height*btnPlay.scaleY/2)
         btnPlay.addListener(BtnPlay(game))
 
 
