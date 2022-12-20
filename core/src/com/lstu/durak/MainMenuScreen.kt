@@ -1,6 +1,7 @@
 package com.lstu.durak
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.InputProcessor
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Batch
@@ -31,6 +32,7 @@ class MainMenuScreen(val game: Durak): Screen {
         btnPlay.width = btnPlay.texture.width.toFloat()
         btnPlay.height = btnPlay.texture.height.toFloat()
         btnPlay.setPosition(Gdx.graphics.width.toFloat()/2 - btnPlay.width*btnPlay.scaleX/2 , Gdx.graphics.height.toFloat()/2 - btnPlay.height*btnPlay.scaleY/2)
+        btnPlay.addListener(BtnPlay(game))
 
 
         stage!!.addActor(bg)
@@ -38,9 +40,9 @@ class MainMenuScreen(val game: Durak): Screen {
         // Проверка
     }
 
-    class BtnPlay(): ClickListener(){
+    class BtnPlay(val game: Durak): ClickListener(){
         override fun clicked(event: InputEvent?, x: Float, y: Float) {
-            super.clicked(event, x, y)
+            game.showGame()
         }
     }
 
@@ -56,6 +58,7 @@ class MainMenuScreen(val game: Durak): Screen {
     }
 
     override fun show() {
+        Gdx.input.setInputProcessor(stage)
     }
 
     override fun pause() {
@@ -77,8 +80,6 @@ class MainMenuScreen(val game: Durak): Screen {
     class Button(val texture: Texture):Actor(){
         override fun draw(batch: Batch?, parentAlpha: Float) {
             super.draw(batch, parentAlpha)
-            //batch!!.draw(texture, x, y, width, height)
-            //batch!!.draw(TextureRegion(texture, 0, 0, width.toInt(), height.toInt()), x, y, width, height)
             batch!!.draw(texture, x, y, originX, originY, width, height, scaleX, scaleY, 0f, 0, 0, width.toInt(), height.toInt(), false, false)
         }
     }

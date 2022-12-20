@@ -18,15 +18,25 @@ import com.lstu.durak.model.Suit
 class Durak() : Game() {
     lateinit var batch: SpriteBatch
     lateinit var menuScreen: MainMenuScreen
+    lateinit var gameScreen: GameScreen
 
     override fun create() {
         batch = SpriteBatch()
         menuScreen = MainMenuScreen(this, this.batch)
+        gameScreen = GameScreen(this, this.batch)
         setScreen(menuScreen)
     }
 
     override fun render() {
         super.render()
+    }
+
+    fun showGame(){
+        setScreen(GameScreen(this, batch))
+    }
+
+    fun showMenu(){
+        setScreen(MainMenuScreen(this, batch))
     }
 
     override fun dispose() {
