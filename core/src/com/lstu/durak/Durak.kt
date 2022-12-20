@@ -18,7 +18,8 @@ class Durak(val game: Drop) : Screen {
     }
 
     override fun render(delta: Float) {
-        ScreenUtils.clear(1f, 0f, 0f, delta)
+        ScreenUtils.clear(0f, 0f, 0f, delta)
+
         game.batch.begin()
         game.batch!!.draw(game.textureRegion, 0f, 0f)
         game.batch.end()
