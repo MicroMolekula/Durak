@@ -14,6 +14,6 @@ object DesktopLauncher {
         config.setTitle("Durak")
         config.setIdleFPS(60)
         //config.resizable = false
-        Lwjgl3Application(Drop(), config)
+        Lwjgl3Application(Durak(), config)
     }
 }

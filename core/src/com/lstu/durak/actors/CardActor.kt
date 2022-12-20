@@ -1,12 +1,8 @@
-package com.lstu.durak
+package com.lstu.durak.actors
 
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Batch
-import com.badlogic.gdx.graphics.g2d.Sprite
-import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.Actor
+import com.lstu.durak.Drop
 import com.lstu.durak.model.Card
 
 class CardActor(val value: Card, private val game: Drop) : Actor(){
