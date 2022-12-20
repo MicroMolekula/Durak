@@ -1,6 +1,12 @@
 package com.lstu.durak
 
+import com.badlogic.gdx.Game
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
+import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.Batch
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.ScreenUtils
 import com.badlogic.gdx.utils.viewport.FillViewport
@@ -9,45 +15,20 @@ import com.lstu.durak.model.CardsValue
 import com.lstu.durak.model.Deck
 import com.lstu.durak.model.Suit
 
-class Durak(val game: Drop) : Screen {
-    init{
-        val card = Card(Suit.CLUBS, CardsValue.ACE);
-        val act: CardActor = CardActor(card, this.game)
-        val deck: Deck = Deck()
-        game.stage?.addActor(act)
+class Durak() : Game() {
+    lateinit var batch: SpriteBatch
+    lateinit var menuScreen: MainMenuScreen
+
+    override fun create() {
+        batch = SpriteBatch()
+        menuScreen = MainMenuScreen(this, this.batch)
+        setScreen(menuScreen)
     }
 
-    override fun render(delta: Float) {
-        ScreenUtils.clear(0f, 0f, 0f, delta)
-
-        game.batch.begin()
-        game.batch!!.draw(game.textureRegion, 0f, 0f)
-        game.batch.end()
-        game.stage?.act(delta)
-        game.stage?.draw()
+    override fun render() {
+        super.render()
     }
 
     override fun dispose() {
-
-    }
-
-    override fun show() {
-
-    }
-
-    override fun resize(width: Int, height: Int) {
-
-    }
-
-    override fun pause() {
-
-    }
-
-    override fun resume() {
-
-    }
-
-    override fun hide() {
-
     }
 }
