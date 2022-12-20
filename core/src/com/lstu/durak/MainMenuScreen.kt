@@ -16,13 +16,13 @@ class MainMenuScreen(val game: Durak): Screen {
 
     constructor(game: Durak, batch: Batch): this(game){
         stage = Stage(FillViewport(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat()), batch)
-        val bgTexture = Texture("bgmenu.png")
-        val bg = BackGround(bgTexture)
-        bg.setPosition(0f, 0f)
-        bg.width = Gdx.graphics.width.toFloat()
-        bg.height = Gdx.graphics.height.toFloat()
-        stage!!.addActor(bg)
-        // Проверка связи
+//        val bgTexture = Texture("bgmenu.png")
+//        val bg = BackGround(bgTexture)
+//        bg.setPosition(0f, 0f)
+//        bg.width = Gdx.graphics.width.toFloat()
+//        bg.height = Gdx.graphics.height.toFloat()
+//        stage!!.addActor(bg)
+        // Проверка
     }
 
     override fun render(delta: Float) {
