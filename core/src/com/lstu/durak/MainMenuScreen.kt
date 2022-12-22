@@ -40,7 +40,7 @@ class MainMenuScreen(val game: Durak): Screen {
         btnPlay.setScale(0.3f)
         btnPlay.width = btnPlay.texture.width.toFloat()
         btnPlay.height = btnPlay.texture.height.toFloat()
-        btnPlay.setPosition(Gdx.graphics.width.toFloat()/2 - btnPlay.width*btnPlay.scaleX/2 , Gdx.graphics.height.toFloat()/2 + btnPlay.height*btnPlay.scaleY/2)
+        btnPlay.setPosition(Gdx.graphics.width.toFloat()/2 - btnPlay.width*btnPlay.scaleX , Gdx.graphics.height.toFloat()/2 + btnPlay.height*btnPlay.scaleY/2)
         btnPlay.addListener(BtnPlay(game, game::showGame))
 
 
