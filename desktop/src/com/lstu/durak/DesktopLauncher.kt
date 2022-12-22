@@ -13,6 +13,7 @@ object DesktopLauncher {
         val config = Lwjgl3ApplicationConfiguration()
         config.setTitle("Durak")
         config.setIdleFPS(60)
+        config.setWindowedMode(412, 732)
         //config.resizable = false
         Lwjgl3Application(Durak(), config)
     }
