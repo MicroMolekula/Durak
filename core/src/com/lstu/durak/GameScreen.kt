@@ -122,34 +122,34 @@ class GameScreen(val game: Durak): Screen{
 
     override fun render(delta: Float) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
-        when(gameState){
-            GameState.ATTACKP1 -> {
-                var flag = false
-                for(cardF in fieldAttackArray){
-                    for(cardP in p1.hand){
-                        if(cardF.value.value != cardP.value.value)
-                            flag = true
-                    }
-                }
-                if(flag) gameState = GameState.DEFP2
-            }
-            GameState.ATTACKP2 -> {
-                var flag = false
-                for(cardF in fieldAttackArray){
-                    for(cardP in p2.hand){
-                        if(cardF.value.value != cardP.value.value)
-                            flag = true
-                    }
-                }
-                if(flag) gameState = GameState.DEFP1
-            }
-            GameState.DEFP2 -> {
-
-            }
-            GameState.DEFP1 -> {
-
-            }
-        }
+//        when(gameState){
+//            GameState.ATTACKP1 -> {
+//                var flag = false
+//                for(cardF in fieldAttackArray){
+//                    for(cardP in p1.hand){
+//                        if(cardF.value.value != cardP.value.value)
+//                            flag = true
+//                    }
+//                }
+//                if(flag) gameState = GameState.DEFP2
+//            }
+//            GameState.ATTACKP2 -> {
+//                var flag = false
+//                for(cardF in fieldAttackArray){
+//                    for(cardP in p2.hand){
+//                        if(cardF.value.value != cardP.value.value)
+//                            flag = true
+//                    }
+//                }
+//                if(flag) gameState = GameState.DEFP1
+//            }
+//            GameState.DEFP2 -> {
+//
+//            }
+//            GameState.DEFP1 -> {
+//
+//            }
+//        }
         stage!!.act(delta)
         stage!!.draw()
         batch.begin()
@@ -210,27 +210,11 @@ class GameScreen(val game: Durak): Screen{
             override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 val field: Field
                 val fieldArr: ArrayList<CardActor>
-                when(gameState){
-                    GameState.ATTACKP1 -> {
-                        field = fieldAttack
-                        fieldArr = fieldAttackArray
-                    }
-                    GameState.DEFP1 -> {
-                        field = fieldDef
-                        fieldArr = fieldDefArray
-                    }
-                    GameState.ATTACKP2 -> {
-                        field = fieldAttack
-                        fieldArr = fieldAttackArray
-                    }
-                    GameState.DEFP2 -> {
-                        field = fieldDef
-                        fieldArr = fieldDefArray
-                    }
-                }
+                if(p.id == turn) field = fieldAttack
+                else field = fieldDef
                 handP.removeActor(cardActor)
                 field.group.addActor(cardActor)
-                fieldArr.add(p.hand[p.hand.indexOf(cardActor)])
+                //fieldArr.add(p.hand[p.hand.indexOf(cardActor)])
                 for(j in field.mesh.indices){
                     if (field.meshBool[j]) {
                         cardActor.setPosition(field.mesh[j][0], field.mesh[j][1])
